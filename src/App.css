@@ -2,19 +2,13 @@
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#root {
+  height: 100%;
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #c8d3e8;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -28,10 +22,77 @@
   color: #61dafb;
 }
 
+.login-form {
+  border: black solid;
+  margin-bottom: 20px;
+  padding: 40px 40px;
+  color: black;
+  background-color: white;
+  max-width: 381px;
+  width: 100%;
+}
+
+.password-link {
+  padding: 2px;
+  margin-right: 125px;
+  font-size: small;
+}
+
+.MuiLink-root {
+  color: black !important;
+  text-decoration-color: black !important
+}
+
+.app-logo {
+  margin-bottom: 30px;
+}
+
+.app-footer {
+  position: fixed;
+  bottom: 10px;
+  font-size: small;
+  font-weight: 700;
+  color: black;
+}
+
+.switch-remember {
+  padding: 5px
+}
+
+@media only screen and (max-width: 600px) {
+
+  .app-logo img {
+    width: 347px;
+    justify-content: center;
+  }
+
+  .password-link {
+    padding: initial;
+    width: 200px;
+    text-wrap: wrap;
+  }
+
+  .App {
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .switch-remember {
+    font-size: small;
+    margin-right: 0px;
+    margin-top: 12px;
+  }
+
+  .login-form {
+    max-width: 250px;
+  }
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }

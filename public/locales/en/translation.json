@@ -1,0 +1,13 @@
+{
+    "email":"Email",
+    "password":"Password",
+    "language":"Language",
+    "forgotPassword":"Forgot Password?",
+    "logIn":"Log In",
+    "rememberMe":"Remember Me",
+    "validationMessage":{
+        "invalidEmail":"Please enter a valid email",
+        "noPublicProvider":"This email provider isn't allowed",
+        "required":"Required"
+    }
+}

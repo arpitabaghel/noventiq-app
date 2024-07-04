@@ -1,0 +1,12 @@
+{
+    "email":"ईमेल",
+    "password":"पासवर्ड",
+    "language":"भाषा",
+    "forgotPassword":"पासवर्ड भूल गए?",
+    "logIn":"लॉग इन करें",
+    "rememberMe":"मुझे याद करो",
+    "validationMessage":{
+        "invalidEmail":"कृपया एक मान्य ईमेल दर्ज करें",
+        "noPublicProvider":"इस ईमेल प्रदाता को अनुमति नहीं है"
+    }
+}
