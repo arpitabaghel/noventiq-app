@@ -5,7 +5,8 @@ import { MailOutlined, LockOutlined, VisibilityOffOutlined, VisibilityOutlined }
 import { Button, FormHelperText, Grid, Link, Typography } from "@mui/material";
 import { styled } from '@mui/system';
 import { CustomSelect, CustomSwitch } from "./CustomElements";
-import { Credentials, EmailRegex, PublicEmailProviders } from "../Constants";
+import { Credentials } from "../Constants";
+import { validateEmail } from "../Utils";
 
 const StyledButton = styled(Button)({
     backgroundColor: 'black',
@@ -44,25 +45,6 @@ const LoginForm = () => {
         }
     }
 
-    /* Checks the provided email is of public provider */
-    const checkEmailDomain = () => {
-        const domain = loginData.email.split('@')[1];
-        return PublicEmailProviders.includes(domain)
-    }
-
-    /* Checks the provided email is valid && its domain is not by public provider   */
-    const validateEmail = () => {
-        if (!loginData.email.length) {
-            return 'validationMessage.required';
-        }
-        if (!EmailRegex.test(loginData.email)) {
-            return 'validationMessage.invalidEmail';
-        }
-        if (checkEmailDomain()) {
-            return 'validationMessage.noPublicProvider'
-        }
-        return ''
-    }
 
     return (
         <form onSubmit={handleSubmit} autoComplete="off">
@@ -83,7 +65,7 @@ const LoginForm = () => {
                             size="md" 
                             value={loginData.email}
                             onChange={(e) => handleChange(e)}
-                            onBlur={() => setError(validateEmail())}
+                            onBlur={() => setError(validateEmail(loginData.email))}
                         />
                         {error ? <FormHelperText error>{t(error)}</FormHelperText> : ''}
                     </Grid>
