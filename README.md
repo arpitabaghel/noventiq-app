@@ -35,6 +35,8 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 - Material Icons 
 
+- react-i18next (Internationalization and Translation)
+
 ## Steps to run locally
 
 Git clone the repository on your local
