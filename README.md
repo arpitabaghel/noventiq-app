@@ -39,6 +39,6 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 Git clone the repository on your local
 
-Open the terminal and run "npm install" so that dependencies get install and then run "npm start"
- 
+Open the terminal, navigate to cloned directory
 
+Then run "npm install" so that dependencies gets installed locally and then run "npm start" to start the server 
