@@ -1,11 +1,11 @@
 import React, { useState } from "react"
 import { useTranslation } from 'react-i18next';
 import Input from '@mui/joy/Input';
-import { MailOutlined, LockOutlined, VisibilityOffOutlined, VisibilityOutlined} from '@mui/icons-material';
+import { MailOutlined, LockOutlined, VisibilityOffOutlined, VisibilityOutlined } from '@mui/icons-material';
 import { Button, FormHelperText, Grid, Link, Typography } from "@mui/material";
 import { styled } from '@mui/system';
 import { CustomSelect, CustomSwitch } from "./CustomElements";
-import { emailRegex, publicEmailProviders } from "../Constants";
+import { Credentials, EmailRegex, PublicEmailProviders } from "../Constants";
 
 const StyledButton = styled(Button)({
     backgroundColor: 'black',
@@ -13,40 +13,49 @@ const StyledButton = styled(Button)({
     width: '40%',
     height: '40px',
     textTransform: 'capitalize',
-    ":hover": { backgroundColor: 'black' }
-
+    ":hover": { backgroundColor: 'black' },
+    ":disabled":{color: 'white'}
 });
 
 const LoginForm = () => {
-    const { t,i18n } = useTranslation();
-    const [loginData,setLoginData]=useState({
-        email:'',
-        password:'',
-        language:i18n.language,
-        remember_me:false
+    const { t, i18n } = useTranslation();
+    const [loginData, setLoginData] = useState({
+        email: '',
+        password: '',
+        language: i18n.language,
+        remember_me: false
     })
     const [error, setError] = useState('');
     const [showPassword, setShowPassword] = useState(false)
     const handleChange = (e) => {
         const { name, value } = e.target;
         setLoginData({
-          ...loginData,
-          [name]: value
+            ...loginData,
+            [name]: value
         });
-      };
+    };
 
-    const handleSubmit = (e, values) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
+        if (loginData.email === Credentials.email && loginData.password === Credentials.password) {
+            alert(t('welcomeMsg'))
+        } else {
+            alert(t('incorrectCreds'))
+        }
     }
+
+    /* Checks the provided email is of public provider */
     const checkEmailDomain = () => {
         const domain = loginData.email.split('@')[1];
-        return publicEmailProviders.includes(domain)
+        return PublicEmailProviders.includes(domain)
     }
+
+    /* Checks the provided email is valid && its domain is not by public provider   */
     const validateEmail = () => {
         if (!loginData.email.length) {
             return 'validationMessage.required';
         }
-        if (!emailRegex.test(loginData.email)) {
+        if (!EmailRegex.test(loginData.email)) {
             return 'validationMessage.invalidEmail';
         }
         if (checkEmailDomain()) {
@@ -54,7 +63,7 @@ const LoginForm = () => {
         }
         return ''
     }
-    
+
     return (
         <form onSubmit={handleSubmit} autoComplete="off">
             <div className="login-form">
@@ -71,7 +80,7 @@ const LoginForm = () => {
                     <Grid item xs={8}>
                         <Input id="email" name="email"
                             startDecorator={<MailOutlined />}
-                            size="md" placeholder="Email"
+                            size="md" 
                             value={loginData.email}
                             onChange={(e) => handleChange(e)}
                             onBlur={() => setError(validateEmail())}
@@ -91,9 +100,9 @@ const LoginForm = () => {
                             name="password"
                             startDecorator={<LockOutlined />}
                             onChange={(e) => handleChange(e)}
-                            size="sm" placeholder="Password"
+                            size="sm" 
                             endDecorator={
-                                <span onClick={() => setShowPassword(!showPassword)} style={{paddingTop:'5px'}}>{showPassword ? <VisibilityOffOutlined /> : <VisibilityOutlined />}</span>
+                                <span onClick={() => setShowPassword(!showPassword)} style={{ paddingTop: '5px' }}>{showPassword ? <VisibilityOffOutlined /> : <VisibilityOutlined />}</span>
                             }
                         />
                         <div className="password-link">
@@ -109,12 +118,12 @@ const LoginForm = () => {
                         </Typography>
                     </Grid>
                     <Grid item xs={8}>
-                        <CustomSelect setData={setLoginData}/>
-                        <CustomSwitch checked={loginData.remember_me} setData={setLoginData}/>
+                        <CustomSelect setData={setLoginData} />
+                        <CustomSwitch checked={loginData.remember_me} setData={setLoginData} />
                     </Grid>
                 </Grid>
             </div>
-            <StyledButton type="submit">{t('logIn')}</StyledButton>
+            <StyledButton type="submit" disabled={error}>{t('logIn')}</StyledButton>
         </form>
 
     )

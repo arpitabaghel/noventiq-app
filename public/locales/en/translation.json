@@ -5,6 +5,8 @@
     "forgotPassword":"Forgot Password?",
     "logIn":"Log In",
     "rememberMe":"Remember Me",
+    "incorrectCreds":"Incorrect email or password.",
+    "welcomeMsg":"Welcome to noventiq",
     "validationMessage":{
         "invalidEmail":"Please enter a valid email",
         "noPublicProvider":"This email provider isn't allowed",

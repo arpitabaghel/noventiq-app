@@ -5,6 +5,8 @@
     "forgotPassword":"पासवर्ड भूल गए?",
     "logIn":"लॉग इन करें",
     "rememberMe":"मुझे याद करो",
+    "incorrectCreds":"गलत ईमेल या पासवर्ड।",
+    "welcomeMsg":"नोवेंटिक में आपका स्वागत है",
     "validationMessage":{
         "invalidEmail":"कृपया एक मान्य ईमेल दर्ज करें",
         "noPublicProvider":"इस ईमेल प्रदाता को अनुमति नहीं है"
